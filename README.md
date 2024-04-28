@@ -33,22 +33,22 @@ chroma-final consists 2 parts.
 ### chromadb-svc.yaml
 This YAML file defines the Kubernetes Service for accessing Chromadb(basically for locating chromadb inside the cluster). Here's what it includes:
 
-Metadata: Contains metadata about the service, including its name (name: chromadb-svc).
-Spec: Defines the service's specifications, such as selector labels and ports.
-Selector: Specifies the labels used to select the pods that the service will route traffic to (app: chromadb-prod).
-Ports: Specifies the ports on which the service will listen for incoming traffic (port: 8000).
+- Metadata: Contains metadata about the service, including its name (name: chromadb-svc).
+- Spec: Defines the service's specifications, such as selector labels and ports.
+- Selector: Specifies the labels used to select the pods that the service will route traffic to (app: chromadb-prod).
+- Ports: Specifies the ports on which the service will listen for incoming traffic (port: 8000).
 
 ### chromadb-sts.yaml
 We use statefulset for the deployment of databases because they retain the state of database...Even the pod is deleted or restarted they will revert back to their previous state.
 i.e database structure like collection name ..user data etc. won't be lost.
 This YAML file defines the Kubernetes StatefulSet for managing Chromadb deployment. Here's what it includes:
 
-Metadata: Contains metadata about the StatefulSet, including its name (name: chromadb-dep).
-Spec: Defines the StatefulSet's specifications, such as the service name it's associated with (serviceName: "chromadb-svc") and the number of replicas (replicas: 1).
-Selector: Specifies the labels used to select the pods managed by the StatefulSet (matchLabels: app: chromadb-prod).
-Template: Defines the pod template for the StatefulSet, including labels and pod specifications.
-Volumes: Specifies the volumes mounted to the pods, such as the persistent volume claim (name: chroma-data).
-Containers: Defines the container(s) running in the pods, including the image, ports, and volume mounts.
+- Metadata: Contains metadata about the StatefulSet, including its name (name: chromadb-dep).
+- Spec: Defines the StatefulSet's specifications, such as the service name it's associated with (serviceName: "chromadb-svc") and the number of replicas (replicas: 1).
+- Selector: Specifies the labels used to select the pods managed by the StatefulSet (matchLabels: app: chromadb-prod).
+- Template: Defines the pod template for the StatefulSet, including labels and pod specifications.
+- Volumes: Specifies the volumes mounted to the pods, such as the persistent volume claim (name: chroma-data).
+- Containers: Defines the container(s) running in the pods, including the image, ports, and volume mounts.
 
 Run: ```kubectl apply -f chromadb-final.yaml -n <your-namespace-name>```
 
