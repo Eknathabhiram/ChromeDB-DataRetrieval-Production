@@ -5,7 +5,7 @@ ChromaDB is a robust open-source vector database that is highly versatile for va
 
 ## Running Locally
 If you want to run ChromaDB on your local system, execute the following command:
-'''docker run --name chroma_container1 -p 8000:8000 chromadb/chroma:latest'''
+```docker run --name chroma_container1 -p 8000:8000 chromadb/chroma:latest```
 
 This command sets up ChromaDB with normal port mapping without any data persistence. If you need a custom port, use the following command:
 '''docker run --name chroma_container1 -p 9000:9000 chromadb/chroma:latest --workers 1 --host 0.0.0.0 --port 9000 --proxy-headers --log-config chromadb/log_config.yml --timeout-keep-alive 30'''
