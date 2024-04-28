@@ -18,11 +18,11 @@ Assuming your production setup already has dynamic provisioning available, you w
 ### chromadb-pvc.yaml
 This YAML file defines the PersistentVolumeClaim (PVC) for Chromadb, ensuring persistent storage for the database. Here's what it includes:
 
-Metadata: Contains metadata about the PVC, including its name (name: chromadb-pvc) and labels (labels: app: "chroma-db").
-Spec: Defines the PVC's specifications, such as access modes, storage class, and resource requests.
-Access Modes: Specifies the access mode(s) for the volume (accessModes: ReadWriteOnce).
-Storage Class: Specifies the storage class for the volume (storageClassName: rook-ceph-block).
-Resources: Defines the requested storage capacity (storage: 2Gi).
+- Metadata: Contains metadata about the PVC, including its name (name: chromadb-pvc) and labels (labels: app: "chroma-db").
+- Spec: Defines the PVC's specifications, such as access modes, storage class, and resource requests.
+- Access Modes: Specifies the access mode(s) for the volume (accessModes: ReadWriteOnce).
+- Storage Class: Specifies the storage class for the volume (storageClassName: rook-ceph-block).
+- Resources: Defines the requested storage capacity (storage: 2Gi).
 
 Run: ```kubectl apply -f chromadb-pvc.yaml -n <your-namespace-name>```
 
