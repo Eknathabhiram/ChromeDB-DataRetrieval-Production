@@ -5,10 +5,12 @@ ChromaDB is a robust open-source vector database that is highly versatile for va
 
 ## Running Locally
 If you want to run ChromaDB on your local system, execute the following command:
+
 ```docker run --name chroma_container1 -p 8000:8000 chromadb/chroma:latest```
 
 This command sets up ChromaDB with normal port mapping without any data persistence. If you need a custom port, use the following command:
-'''docker run --name chroma_container1 -p 9000:9000 chromadb/chroma:latest --workers 1 --host 0.0.0.0 --port 9000 --proxy-headers --log-config chromadb/log_config.yml --timeout-keep-alive 30'''
+
+```docker run --name chroma_container1 -p 9000:9000 chromadb/chroma:latest --workers 1 --host 0.0.0.0 --port 9000 --proxy-headers --log-config chromadb/log_config.yml --timeout-keep-alive 30```
 
 ## Getting Started
 Assuming your production setup already has dynamic provisioning available, you will need to create a persistent volume to ensure your data survives even if your database shuts down.
@@ -22,7 +24,7 @@ Access Modes: Specifies the access mode(s) for the volume (accessModes: ReadWrit
 Storage Class: Specifies the storage class for the volume (storageClassName: rook-ceph-block).
 Resources: Defines the requested storage capacity (storage: 2Gi).
 
-Run: '''kubectl apply -f chromadb-pvc.yaml -n <your-namespace-name>
+Run: ```kubectl apply -f chromadb-pvc.yaml -n <your-namespace-name>```
 
 chroma-final consists 2 parts.
  1. chroma-svc.yaml
@@ -48,7 +50,7 @@ Template: Defines the pod template for the StatefulSet, including labels and pod
 Volumes: Specifies the volumes mounted to the pods, such as the persistent volume claim (name: chroma-data).
 Containers: Defines the container(s) running in the pods, including the image, ports, and volume mounts.
 
-Run: '''kubectl apply -f chromadb-final.yaml -n <your-namespace-name>
+Run: ```kubectl apply -f chromadb-final.yaml -n <your-namespace-name>```
 
 ## Extra Mandatoty Stuff:
 Ensure to add liveness and readiness probes, as well as specify the resources provided for the database in the sts.yaml file. 
